@@ -1,2 +1,4 @@
-./getaround/1-api/aws_config/
-./getaround/2-dashboard/.env
+getaround/1-api/aws_config/*
+getaround/2-dashboard/.env
+*.env
+*.ipynb
