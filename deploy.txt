@@ -1,0 +1,10 @@
+docker-compose build
+heroku create myappgetaroundpierre
+heroku container:login
+docker tag getaround-api registry.heroku.com/myappgetaroundpierre/api
+docker push registry.heroku.com/myappgetaroundpierre/api
+docker tag getaround-dashboard registry.heroku.com/myappgetaroundpierre/dashboard
+docker push registry.heroku.com/myappgetaroundpierre/dashboard
+heroku container:release api -a myappgetaroundpierre
+heroku container:release dashboard -a myappgetaroundpierre
+heroku open -a myappgetaroundpierre

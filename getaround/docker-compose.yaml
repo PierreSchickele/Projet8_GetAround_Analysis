@@ -1,0 +1,24 @@
+version: '3'
+services:
+  api:
+    container_name: getaround_api
+    build: ./1-api
+    # image: jedha/house_prices_api
+    ports:
+      - "4000:4000"
+    environment: 
+      - PORT=4000
+    volumes:
+      - ./1-api/aws_config:/root/.aws:rw
+  dashboard:
+    container_name: getaround_dashboard
+    build: ./2-dashboard
+    # image: jedha/house_prices_client 
+    env_file:
+      - ./2-dashboard/.env
+    ports:
+      - "3050:3000"
+    volumes:
+      - ./2-dashboard:/home/app
+    depends_on:
+      - "api"
