@@ -14,7 +14,8 @@ st.set_page_config(
     layout="wide"
 )
 
-API_URL=os.environ.get("API_URL")
+API_URL = os.environ.get("API_URL")
+PORT = os.environ.get("PORT")
 
 ### TITLE AND TEXT
 st.title("GetAround Dashboard")

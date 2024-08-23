@@ -1,10 +1,47 @@
 docker-compose build
-heroku create myappgetaroundpierre
+docker build -t getaround-api ./1-api/
+docker build -t getaround-dashboard ./2-dashboard/
+heroku create appgetaroundpierre
 heroku container:login
-docker tag getaround-api registry.heroku.com/myappgetaroundpierre/api
-docker push registry.heroku.com/myappgetaroundpierre/api
-docker tag getaround-dashboard registry.heroku.com/myappgetaroundpierre/dashboard
-docker push registry.heroku.com/myappgetaroundpierre/dashboard
-heroku container:release api -a myappgetaroundpierre
-heroku container:release dashboard -a myappgetaroundpierre
-heroku open -a myappgetaroundpierre
+docker tag getaround-api registry.heroku.com/appgetaroundpierre/api
+docker tag getaround-dashboard registry.heroku.com/appgetaroundpierre/dashboard
+docker push registry.heroku.com/appgetaroundpierre/api
+docker push registry.heroku.com/appgetaroundpierre/dashboard
+heroku container:release api -a appgetaroundpierre
+heroku container:release dashboard -a appgetaroundpierre
+heroku open -a appgetaroundpierre
+
+
+docker run -p 4000:4000 -e PORT=4000 getaround-api
+docker run -p 8501:8501 -e PORT=8501 getaround-dash
+
+
+docker build -t getaround-api .
+heroku create myapigetaroundpierre
+heroku container:login
+docker run -p 4000:4000 -e PORT=4000 getaround-api
+heroku container:push web -a myapigetaroundpierre
+heroku container:release web -a myapigetaroundpierre
+heroku open -a myapigetaroundpierre
+
+docker build -t getaround-dash .
+heroku create mydashgetaroundpierre
+heroku container:login
+docker run -p 8501:8501 -e PORT=8501 getaround-dash
+heroku container:push web -a mydashgetaroundpierre
+heroku container:release web -a mydashgetaroundpierre
+heroku open -a mydashgetaroundpierre
+
+
+
+
+
+
+
+
+
+
+
+
+
+
